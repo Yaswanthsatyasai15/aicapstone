@@ -1,0 +1,26 @@
+services:
+  - name: chroma-fastapi                     # Unique name for your service
+    type: web                                # Web service (since FastAPI serves over HTTP)
+    env: python                              # Use the Python environment
+    region: oregon                           # (Optional) Choose a region (e.g., oregon or frankfurt for EU)
+    plan: free                               # Free tier (or "starter", "pro" for higher tiers)
+ 
+    buildCommand: |
+      pip install -r requirements.txt        # Install dependencies
+ 
+    startCommand: |
+      python api.py                          # Command to start FastAPI application
+ 
+    envVars:                                 # Environment variables for the service
+      - key: CHROMA_DB_PATH                  # Path for persistent ChromaDB storage
+        value: /opt/render/chroma_db
+      - key: PYTHON_VERSION                  # Ensure Python version matches your local dev environment
+        value: 3.10
+ 
+    disk:                                    # Persistent storage for ChromaDB (for saving vectors)
+      - name: chromadb-storage
+        mountPath: /opt/render/chroma_db     # Ensure ChromaDB storage persists across restarts
+        sizeGB: 1                             # Minimum 1GB for vector storage
+ 
+    healthCheckPath: /search                 # FastAPI endpoint to monitor service health
+    autoDeploy: true                         # Automatically deploy new commits
