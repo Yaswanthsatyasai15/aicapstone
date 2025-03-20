@@ -15,7 +15,7 @@ categories = ["beginner", "intermediate", "expert"]
 collections = {cat: chroma_client.get_or_create_collection(name=cat) for cat in categories}
 
 # Load model
-model = SentenceTransformer('all-MiniLM-L6-v2')
+model = SentenceTransformer('paraphrase-MiniLM-L3-v2')  # 80MB vs 120MB
 
 def store_data_in_chroma(file_path: str, category: str) -> None:
     """Store document chunks in ChromaDB with embeddings."""
