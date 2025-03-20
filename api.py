@@ -11,7 +11,7 @@ model = SentenceTransformer('all-MiniLM-L6-v2')
 app = FastAPI()
 
 # Initialize paths and models
-db_path = os.path.expanduser("~/Documents/chroma_db")
+db_path = os.path.expanduser("~/Documents/chroma_project")
 chroma_client = chromadb.PersistentClient(path=db_path)
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
