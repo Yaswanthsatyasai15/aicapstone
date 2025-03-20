@@ -1,9 +1,10 @@
 services:
-  - name: chroma-fastapi                     # Unique name for your service
-    type: web                                # Web service (since FastAPI serves over HTTP)
-    env: python                              # Use the Python environment
-    region: oregon                           # (Optional) Choose a region (e.g., oregon or frankfurt for EU)
-    plan: free                               # Free tier (or "starter", "pro" for higher tiers)
+  - type: web
+    name: aicapstone
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn api:app --host 0.0.0.0 --port 8000
+    plan: free  # Explicitly set to free tier
  
     buildCommand: |
       pip install -r requirements.txt        # Install dependencies
