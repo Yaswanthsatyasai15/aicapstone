@@ -20,11 +20,11 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
-<<<<<<< HEAD
+
 @app.get("/")
 def health_check():
     return {"status": "OK"}
-=======
+
 # Initialize paths and models
 db_path = os.path.expanduser("~/Documents/chroma_project")
 chroma_client = chromadb.PersistentClient(path=db_path)
@@ -38,7 +38,7 @@ print("Verifying data in ChromaDB...")
 for cat in categories:
     count = collections[cat].count()
     print(f"Category {cat} has {count} documents")
->>>>>>> d16323bb09c8206ded40c22650dc8a36cf373a06
+
 
 # Query function
 def query_chroma(query, category, top_k=3):
@@ -62,9 +62,9 @@ async def search(query: str, category: str):
 
 if __name__ == "__main__":
     import uvicorn
-<<<<<<< HEAD
+
     uvicorn.run(app, host="0.0.0.0", port=8000)
-=======
+
     from fastapi.testclient import TestClient
 
     client = TestClient(app)
@@ -76,4 +76,4 @@ if __name__ == "__main__":
     test_search()
 
     uvicorn.run(app, host="0.0.0.0", port=8000)
->>>>>>> d16323bb09c8206ded40c22650dc8a36cf373a06
+
