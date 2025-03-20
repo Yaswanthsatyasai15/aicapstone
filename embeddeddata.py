@@ -21,7 +21,8 @@ def store_data_in_chroma(file_path: str, category: str) -> None:
     """Store document chunks in ChromaDB with embeddings."""
     try:
         print(f"🔍 Processing {os.path.basename(file_path)}...")
-        
+           batch_size = 50  # Reduced from 100
+    for i in range(0, len(content), batch_size):
         # Read and chunk data
         with open(file_path, "r", encoding="utf-8") as f:
             content = f.read().split("\n\n")  # Split by paragraphs
